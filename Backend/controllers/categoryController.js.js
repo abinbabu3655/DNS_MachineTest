@@ -42,8 +42,8 @@ const getSubSubCategories  =asyncHandler(async (req,res)=>{
 //get all products in particular subsubCategory
 
 const getProducts  =asyncHandler(async (req,res)=>{
-    console.log(req.body);
-    const Products = await products.find({subsubcategory:objectId(req.params.id)})
+    console.log(req.params.id);
+    const Products = await products.find({subsubcategory:1})
     console.log(Products);
     res.status(200).json({Products})
 })

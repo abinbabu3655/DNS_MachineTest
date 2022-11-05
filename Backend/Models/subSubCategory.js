@@ -11,7 +11,7 @@ const subSubcategorySchema = new mongoose.Schema({
         required:true,
         unique:true
     },
-    subSubcategoryname:{
+    subsubcategoryname:{
         type:String,
         required:true,
         trim:true

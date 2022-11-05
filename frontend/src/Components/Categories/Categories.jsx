@@ -1,10 +1,10 @@
 import React from 'react'
 import classes from './Categories.module.css'
 
-function Categories() {
+function Categories(props) {
   return (
     <div className={classes.categorybox}>
-      hiiiiiii
+    {props.children}
     </div>
   )
 }

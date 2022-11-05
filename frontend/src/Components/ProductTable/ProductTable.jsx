@@ -1,7 +1,7 @@
 import React from 'react'
 import './ProductTable.module.css'
 
-function ProductTable() {
+function ProductTable({prodData}) {
   return (
     <div>
      <table>
@@ -10,16 +10,19 @@ function ProductTable() {
     <th>Product name</th>
     <th>Price</th>
   </tr>
+  
+    {
+      prodData.map((data)=>{
+
+  return(
   <tr>
   <td><input type='checkbox' /></td>
-    <td>Product 1</td>
-    <td>$10</td>
-  </tr>
-  <tr>
-  <td><input type='checkbox' /></td>
-    <td>Product 2</td>
-    <td>$20</td>
-  </tr>
+    <td>{data.productname}</td>
+    <td>${data.price}</td>
+  </tr> )
+
+
+})}
 </table>
     </div>
   )
