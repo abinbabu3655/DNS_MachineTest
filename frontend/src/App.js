@@ -12,11 +12,10 @@ function App() {
       <>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<LandingPage/>}/> 
-            <Route path="/second" element={<SecondPage/>}/> 
-            <Route path="/third" element={<ThirdPage/>}/>
-            <Route path="/last" element={<LastPage/>}/> 
-
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/second" element={<SecondPage />} />
+            <Route path="/third" element={<ThirdPage />} />
+            <Route path="/last" element={<LastPage />} />
           </Routes>
         </BrowserRouter>
       </>

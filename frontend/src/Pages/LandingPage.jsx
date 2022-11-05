@@ -1,54 +1,54 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
-import {useNavigate} from 'react-router-dom'
-import Categories from '../Components/Categories/Categories'
-import ProductTable from '../Components/ProductTable/ProductTable'
-import axios from 'axios'
-import {Link} from 'react-router-dom'
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import Categories from "../Components/Categories/Categories";
+import ProductTable from "../Components/ProductTable/ProductTable";
+import axios from "axios";
+import classes from "./PageStyling.module.css";
+
 
 const LandingPage = () => {
+  const [data, setData] = useState([]);
+  const [ProductsData, setProductsData] = useState([]);
+  const navigate = useNavigate();
 
-  const [data,setData] = useState([])
-  const [ProductsData,setProductsData] = useState([])
-  const navigate= useNavigate()
-
-  const getData=async ()=>{
-
-    console.log("hello");
-    const response = await axios.get('http://localhost:5000/')
-    setData(response.data.Categories)
-    setProductsData(response.data.Products)
-  
-  }
-  useEffect(()=>{
-
-   getData();
-
-  },[])
-  
- console.log("hiiiiiiii",data);
-
- console.log("productttt data",ProductsData);
-
+  const getData = async () => {
+    const response = await axios.get("http://localhost:5000/");
+    setData(response.data.Categories);
+    setProductsData(response.data.Products);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+  const productTotalCount = ProductsData.length;
 
   return (
     <>
-    <h1>Categories</h1>
-    <Categories >
-
-{  data.map((category)=>{ 
-
- return  <button onClick={()=>navigate('/second',{state:category._id})}> {category.categoryName} </button> 
-}
-
-)}
-    </Categories>
-
-
-    <ProductTable prodData={ProductsData} />
-
+      <div className={classes.main}>
+        <h1>Categories({productTotalCount})</h1>
+        <Categories>
+          {data.map((category) => {
+            const products = ProductsData.filter((products) => {
+              return products.category === category._id;
+            });
+            return (
+              <button
+                onClick={() =>
+                  navigate("/second", {
+                    state: { catId: category._id, cat: category.categoryName },
+                  })
+                }
+              >
+                {" "}
+                {category.categoryName} ({products.length})
+              </button>
+            );
+          })}
+        </Categories>
+        <ProductTable prodData={ProductsData} />
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;
