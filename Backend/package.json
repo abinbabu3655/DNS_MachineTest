@@ -5,14 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "server":"nodemon app.js"
+    "server": "nodemon app.js"
   },
   "author": "Abin babu",
   "license": "MIT",
   "dependencies": {
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "express-async-handler": "^1.2.0"
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^6.7.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
