@@ -10,6 +10,8 @@ const SecondPage = () => {
   const location = useLocation();
   const [subcat, setSubcat] = useState([]);
   const [ProductsData, setProductsData] = useState([]);
+  const [productTotalCount, setProductTotalCount] = useState(0);
+
   const navigate = useNavigate();
 
   const getDatas = async () => {
@@ -21,10 +23,14 @@ const SecondPage = () => {
     setProductsData(response.data.Products);
     // console.log(response.data)
   };
+  const getProductCounts = () => {
+    setProductTotalCount(ProductsData.length);
+  };
   useEffect(() => {
     getDatas();
-  }, []);
-  const productTotalCount = ProductsData.length;
+    getProductCounts();
+
+  }, [ProductsData]);
 
   return (
     <div className={classes.main}>

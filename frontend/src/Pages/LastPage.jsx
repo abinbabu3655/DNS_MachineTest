@@ -8,17 +8,23 @@ import classes from "./PageStyling.module.css";
 const LastPage = () => {
   const location = useLocation();
   const [ProductsData, setProductsData] = useState([]);
+  const [productTotalCount, setProductTotalCount] = useState(0);
+
   const getDatas = async () => {
     const response = await axios.get(
       `http://localhost:5000/getcatproducts/${location.state}`
     );
     setProductsData(response.data.Products);
   };
+  const getProductCounts = () => {
+    setProductTotalCount(ProductsData.length);
+  };
 
   useEffect(() => {
     getDatas();
-  }, []);
-  const productTotalCount = ProductsData.length;
+    getProductCounts();
+
+  }, [ProductsData]);
 
   return (
     <div>

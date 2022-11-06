@@ -6,10 +6,10 @@ import ProductTable from "../Components/ProductTable/ProductTable";
 import axios from "axios";
 import classes from "./PageStyling.module.css";
 
-
 const LandingPage = () => {
   const [data, setData] = useState([]);
   const [ProductsData, setProductsData] = useState([]);
+  const [productTotalCount, setProductTotalCount] = useState(0);
   const navigate = useNavigate();
 
   const getData = async () => {
@@ -17,10 +17,13 @@ const LandingPage = () => {
     setData(response.data.Categories);
     setProductsData(response.data.Products);
   };
+  const getProductCounts = () => {
+    setProductTotalCount(ProductsData.length);
+  };
   useEffect(() => {
     getData();
-  }, []);
-  const productTotalCount = ProductsData.length;
+    getProductCounts();
+  }, [ProductsData]);
 
   return (
     <>
